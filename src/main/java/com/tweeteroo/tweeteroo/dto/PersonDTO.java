@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.URL;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record UserDTO(
+public record PersonDTO(
     
 @NotBlank
 String username, 

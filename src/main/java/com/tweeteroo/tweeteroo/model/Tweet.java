@@ -29,5 +29,5 @@ public class Tweet {
     private String text;
 
     @ManyToOne
-    private User user;
+    private Person user;
 }
