@@ -25,21 +25,19 @@ public class Person {
     
     public Person(PersonDTO data){
         this.username = data.username();
-        this.avatarUrl = data.avatar();
+        this.avatar = data.avatar();
     }
 
     public Person(){
 
     }
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
 
     @Column(length = 50, nullable = false, unique = true, name = "username")
-    @NaturalId
+    @Id
     private String username;
 
 
-    @Column(length = 300, nullable = false, name = "avatar_url")
-    private String avatarUrl;
+    @Column(length = 300, nullable = false, name = "avatar")
+    private String avatar;
 }

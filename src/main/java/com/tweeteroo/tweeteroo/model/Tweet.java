@@ -1,5 +1,13 @@
 package com.tweeteroo.tweeteroo.model;
 
+import java.util.Date;
+
+import javax.print.attribute.standard.DateTimeAtCreation;
+
+import org.hibernate.type.descriptor.jdbc.BigIntJdbcType;
+import org.hibernate.validator.constraints.URL;
+import org.springframework.data.annotation.CreatedDate;
+
 import com.tweeteroo.tweeteroo.dto.TweetDTO;
 import com.tweeteroo.tweeteroo.types.PersonTweet;
 
@@ -8,17 +16,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OrderBy;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "tweets")
 public class Tweet {
 
     public Tweet(Person user, String text){
         this.text = text;
-        this.user = user;
+        this.username = user.getUsername();
+        this.avatar = user.getAvatar();
     }
 
     public Tweet (TweetDTO data){
@@ -35,7 +45,10 @@ public class Tweet {
     @Column(length = 500, nullable = false, name = "text")
     private String text;
 
-    @ManyToOne
-    @JoinColumn(name = "username")
-    private Person user;
+    @Column
+    private String username;
+
+    @Column
+    @URL
+    private String avatar;
 }
